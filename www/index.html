@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My First Cordova Mobile App</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="app">
+        <h1>My First Cordova Mobile App</h1>
+
+        <div class="info">
+            <p><strong>Student Name:</strong> [Your Name Here]</p>
+            <p><strong>Course:</strong> [Your Course]</p>
+            <p><strong>Year & Section:</strong> [Your Year & Section]</p>
+            <p><strong>Application Development</strong></p>
+        </div>
+
+        <div class="buttons">
+            <button onclick="showAbout()">About Me</button>
+            <button onclick="showCourse()">My Course</button>
+            <button onclick="exitApp()">Exit</button>
+        </div>
+
+        <div id="clock"></div>
+    </div>
+
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
