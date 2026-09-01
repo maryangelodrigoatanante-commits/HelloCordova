@@ -1,64 +1,340 @@
-{
+* {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-color: #1a0814;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    margin: 0;
+    padding: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Light Mode Override */
+body.light-mode {
+    background-color: #f4ecf0;
+}
+
+body.light-mode .tall-card {
+    background-color: #ffffff;
+    border-color: #c05284;
+}
+
+body.light-mode .hero-title,
+body.light-mode .info-card {
+    background-color: #f7e8f0;
+    border-color: #c05284;
+}
+
+body.light-mode .app-title,
+body.light-mode .clock-label,
+body.light-mode .info-row .label,
+body.light-mode .input-group label {
+    color: #6a1b41;
+}
+
+body.light-mode .app-subtitle,
+body.light-mode .info-row .value {
+    color: #2b2b2b;
+}
+
+body.light-mode .input-group input {
+    background-color: #ffffff;
+    color: #2b2b2b;
+    border-color: #c05284;
+}
+
+body.light-mode .action-btn.btn-exit {
+    background-color: #e6cbd8;
+    color: #521f43;
+    border-color: #c05284;
+}
+
+/* Container Card */
+.tall-card {
+    background-color: #2a1023;
+    border: 2px solid #b8437d;
+    border-radius: 16px;
     padding: 20px;
-    color: white;
-}
-
-.app {
-    max-width: 400px;
-    margin: 0 auto;
-    background: rgba(0,0,0,0.2);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-h1 {
-    text-align: center;
-    color: #ffd700;
-}
-
-.info {
-    background: rgba(255,255,255,0.1);
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.buttons {
+    width: 100%;
+    max-width: 380px;
+    min-height: 580px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
+    justify-content: space-between;
 }
 
-button {
-    padding: 14px;
-    font-size: 16px;
+.page {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 540px;
+    gap: 12px;
+}
+
+.page.active {
+    display: flex;
+}
+
+/* Header Section */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cordova-logo {
+    width: 40px;
+    height: auto;
+}
+
+.status-pill {
+    background-color: #9e3266;
+    color: #f8e8f0;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 12px;
+}
+
+.theme-btn {
+    background-color: #9e3266;
+    color: #f8e8f0;
     border: none;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.theme-btn:active {
+    background-color: #7a234e;
+}
+
+/* Framed Title Box */
+.hero-title {
+    text-align: center;
+    background-color: #38152e;
+    border: 1.5px solid #b8437d;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.app-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f0a8cd;
+    line-height: 1.2;
+}
+
+.app-subtitle {
+    font-size: 11px;
+    color: #d1c0c9;
+    margin-top: 4px;
+    font-weight: bold;
+}
+
+/* Digital Clock Box */
+.clock-card {
+    background-color: #12050e;
+    border: 1.5px solid #9e3266;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clock-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #f0a8cd;
+}
+
+.clock-time {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e6e6e6;
+    font-family: monospace;
+}
+
+/* Info Display Cards */
+.info-card {
+    background-color: #38152e;
+    border: 1px solid #b8437d;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-row {
+    display: flex;
+    font-size: 13px;
+}
+
+.info-row .label {
+    color: #f0a8cd;
+    font-weight: bold;
+    width: 110px;
+}
+
+.info-row .value {
+    color: #e8dee4;
+    flex: 1;
+}
+
+/* Alert Box */
+.alert-box {
+    display: none;
+    padding: 8px;
     border-radius: 8px;
-    background: #ffd700;
-    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-box.error {
+    display: block;
+    background-color: #992233;
+    color: #fce8eb;
+}
+
+.alert-box.success {
+    display: block;
+    background-color: #1f7a4d;
+    color: #e5f7ed;
+}
+
+/* Form Styles */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.input-group label {
+    font-size: 11px;
+    color: #f0a8cd;
+    font-weight: bold;
+}
+
+.input-group input {
+    background-color: #1a0814;
+    border: 1.5px solid #b8437d;
+    border-radius: 8px;
+    padding: 8px;
+    color: #ffffff;
+    font-size: 12px;
+    outline: none;
+}
+
+/* Calculator Grid */
+.calc-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.calc-display {
+    background-color: #12050e;
+    color: #80e6cc;
+    border: 1.5px solid #b8437d;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 20px;
+    text-align: right;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.calc-btn {
+    background-color: #38152e;
+    color: #fce8f3;
+    border: 1px solid #b8437d;
+    border-radius: 8px;
+    padding: 12px 0;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
-    background: #fff;
-    transform: scale(1.02);
+.calc-btn:active {
+    background-color: #521f43;
 }
 
-#clock {
+.calc-btn.btn-op {
+    background-color: #8c2a5c;
+}
+
+.calc-btn.btn-op:active {
+    background-color: #631c40;
+}
+
+.calc-btn.btn-eq {
+    background-color: #1f7a4d;
+    grid-row: span 2;
+    height: 100%;
+}
+
+.calc-btn.btn-eq:active {
+    background-color: #155434;
+}
+
+/* Action Buttons */
+.button-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.action-btn {
+    width: 100%;
+    background-color: #9e3266;
+    color: #ffffff;
+    border: none;
+    padding: 12px 0;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
     text-align: center;
-    font-size: 18px;
-    margin-top: 15px;
-    color: #ffd700;
+    transition: background-color 0.2s ease;
+}
+
+.action-btn:active {
+    background-color: #6b1f44;
+    opacity: 0.9;
+}
+
+/* INAYOS: Back Home Button (Mas maliwanag at may solid contrast) */
+.action-btn.btn-exit {
+    background-color: #38152e;
+    color: #ffd6eb; /* High contrast soft pink */
+    border: 2px solid #e06fa2; /* Solid high-visibility border */
+}
+
+.action-btn.btn-exit:active {
+    background-color: #521f43;
+    color: #ffffff;
 }
